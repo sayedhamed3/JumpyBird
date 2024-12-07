@@ -1,0 +1,174 @@
+
+body{
+    background-color:antiquewhite;
+    margin: 0;
+    height: 100vh;
+}
+
+nav{
+    background-color: black;
+    padding:20px 10px 15px 10px;
+}
+nav>li{
+    border: 1px solid white;
+    display: inline;
+    padding: 10px;
+}
+nav>li>a{
+    color:white
+}
+#container{
+   padding: 20px;
+   height: 90vh;
+}
+
+#main{
+    display: flex;
+}
+#game{
+    display: none;
+    position: relative;
+}
+.window{
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width:  80%;
+    height: 90%;
+    transform: translate(10%,5%);
+}
+
+#play-button{
+    width:30%;
+    height: 10%;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: 20%;
+}
+
+.overlay{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    width:  100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+#helper{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+
+#settings-button,#help-button{
+    width:60px;
+    height: 100%;
+}
+
+
+
+#settings-button:hover,#help-button:hover{
+   transform: scale(1.2);
+}
+
+
+
+#settings-menu{
+    position: absolute;
+    flex-direction: column;
+    justify-content:start;
+    align-items: flex-start;
+    font-size: 1.3em;
+    top:10%;
+    width: 400px;
+    height: 50%;
+    z-index: 200;
+}
+
+.menu-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 5% 5%;
+    width: 100%;
+    text-align: left;
+}
+
+
+.theme{
+    display: grid;
+    height: 40px;
+    width: 40px;
+    border:2px solid black;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+.selected{
+    border: 5px red solid;
+    border-radius: 10px;
+}
+
+
+.theme:hover{
+    transform: scale(2);
+}
+
+button:hover{
+    transform: scale(1.2);
+}
+
+#sound:hover,#music:hover{
+    transform: scale(1.4);
+}
+
+.top-left,.top-right,.bottom-left,.bottom-right{
+    pointer-events:none;
+}
+
+.theme.normal .top-left{
+    background-color: antiquewhite;
+}
+.theme.normal .top-right{
+    background-color: black;
+}
+.theme.normal .bottom-left{
+    background-color: yellow;
+}
+.theme.normal .bottom-right{
+    background-color: green;
+}
+
+.theme.purple .top-left{
+    background-color: rgb(187, 54, 143);
+}
+.theme.purple .top-right{
+    background-color: rgb(235, 62, 62);
+}
+.theme.purple .bottom-left{
+    background-color: rgb(174, 0, 255);
+}
+.theme.purple .bottom-right{
+    background-color: rgb(0, 238, 255);
+}
+
+#sound{
+    height: 80%;
+    width: 40%;
+}
+#music{
+    height: 80%;
+    width: 30%;
+    margin-right: 20px;
+}
+
+
+
+#settings-button:active,#help-button:active,.theme:active,#music:active,#sound:active,button:active{
+    transform: scale(0.8);
+}
