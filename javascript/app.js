@@ -1,5 +1,6 @@
 console.log("Test")
 
+// Menu / Themes elements
 const playBtnEl = document.querySelector("#play-button")
 const settingsBtnEl = document.querySelector("#settings-button")
 const helpBtnEl = document.querySelector("#help-button")
@@ -8,14 +9,14 @@ const playAgainBtnEl = document.querySelector("#play-again-button")
 const soundEl = document.querySelector("#sound")
 const musicEl = document.querySelector("#music")
 const themesEl = document.querySelectorAll(".theme")
-
 const settingsMenuEl = document.querySelector("#settings-menu")
 
+// Windows elements
 const mainWindowEl = document.getElementById("main")
 const gameWindowEl = document.getElementById("game")
 const gameOverOverlayEl = document.getElementById("game-over")
 
-settingsMenuEl.style.display = "none"
+
 const goToGame = () => {
     gameOverOverlayEl.style.display = "none"
     mainWindowEl.style.display = "none"
@@ -42,24 +43,23 @@ const toggleSettingsMenu = () => {
 let soundEnabled = true
 const toggleSound = () => {
     if(soundEnabled) {
-        soundEl.src = "./assets/images/sound-off.png"
-        soundEnabled = false;
+        soundEl.classList.replace("sound-on","sound-off")
+        soundEnabled = false
     }
     else {
-        soundEl.src = "./assets/images/sound-on.png"
-        soundEnabled = true;
+        soundEl.classList.replace("sound-off","sound-on")
+        soundEnabled = true
     }
-
 }
 
 let musicEnabled = true
 const toggleMusic = () => {
     if(musicEnabled) {
-        musicEl.src = "./assets/images/music-off.png"
+        musicEl.classList.replace("music-on","music-off")
         musicEnabled = false;
     }
     else {
-        musicEl.src = "./assets/images/music-on.png"
+        musicEl.classList.replace("music-off","music-on")
         musicEnabled = true;
     }
 
