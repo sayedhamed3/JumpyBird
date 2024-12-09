@@ -65,25 +65,46 @@ const toggleMusic = () => {
 
 }
 
+const bodyEl = document.querySelector("body")
 const normalTheme = document.querySelector(".normal")
 const purpleTheme = document.querySelector(".purple")
 const darkTheme = document.querySelector(".dark")
 
 const changeTheme = (event) => {
-    if(event.target.classList.contains("normal")){
-        normalTheme.classList.add("selected")
-        purpleTheme.classList.remove("selected")
-        darkTheme.classList.remove("selected")
-    } else if(event.target.classList.contains("purple")){
-        normalTheme.classList.remove("selected")
-        purpleTheme.classList.add("selected")
-        darkTheme.classList.remove("selected")
+    let selectedTheme;
+    if (event.target.classList.contains("normal")) {
+        selectedTheme = "normal-theme";
+    } else if (event.target.classList.contains("purple")) {
+        selectedTheme = "purple-theme";
     } else {
-        normalTheme.classList.remove("selected")
-        purpleTheme.classList.remove("selected")
-        darkTheme.classList.add("selected")
+        selectedTheme = "dark-theme";
+    }
+    bodyEl.classList.remove("normal-theme", "purple-theme", "dark-theme");
+    bodyEl.classList.add(selectedTheme);
+
+    localStorage.setItem("selectedTheme", selectedTheme)
+
+    themesEl.forEach(theme => {
+        theme.classList.toggle("selected", theme.classList.contains(selectedTheme.split("-")[0]));
+    });
+}
+
+const loadThemePreference = () => {
+    const savedTheme = localStorage.getItem("selectedTheme")
+    if (savedTheme) {
+        document.body.classList.add(savedTheme)
+        
+        const themesEl = document.querySelectorAll(".theme")
+        themesEl.forEach(theme => {
+            theme.classList.toggle("selected", theme.classList.contains(savedTheme.split("-")[0]));
+        });
+    } else {
+        document.body.classList.add(normalTheme)
+        const normalTheme = document.querySelector(".normal")
+        normalTheme.classList.add("selected")
     }
 }
+
 
 playBtnEl.addEventListener("click", goToGame)
 playAgainBtnEl.addEventListener("click", goToGame)
@@ -96,4 +117,11 @@ soundEl.addEventListener("click",toggleSound)
 musicEl.addEventListener("click",toggleMusic)
 themesEl.forEach(theme => {
     theme.addEventListener("click",(event) => changeTheme(event))
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadThemePreference();
 });
