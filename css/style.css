@@ -3,6 +3,7 @@
     --text-color: black;
     --button-bg: #f0f0f0;
     --button-text: black;
+    --window-bg: lightgoldenrodyellow;
 }
 
 .purple-theme {
@@ -11,6 +12,7 @@
     --settings-text: black;
     --button-bg: #9b59b6;
     --button-text: white;
+    --window-bg: lightgoldenrodyellow;
 }
 
 .dark-theme {
@@ -18,6 +20,7 @@
     --text-color: white;
     --button-bg: #333;
     --button-text: white;
+    --window-bg: lightgoldenrodyellow;
 }
 
 button {
@@ -43,6 +46,7 @@ nav>li {
     display: inline-block;
     padding: 10px;
     margin-right: 10px;
+    font-size: 1.3em;
 }
 
 nav>li:hover {
@@ -56,7 +60,7 @@ nav>li>a {
 }
 
 #container {
-    padding: 20px;
+    padding: 10px;
     height: 90vh;
 }
 
@@ -71,6 +75,7 @@ nav>li>a {
 
 .window {
     background-color: rgb(216, 216, 216);
+    background-color: var(--window-bg);
     display: flex;
     flex-direction: column;
     text-align: center;
