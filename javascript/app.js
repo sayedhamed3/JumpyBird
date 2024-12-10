@@ -125,3 +125,38 @@ themesEl.forEach(theme => {
 document.addEventListener("DOMContentLoaded", () => {
     loadThemePreference();
 });
+
+
+
+
+
+const board = document.querySelector(".board")
+const scoreEL = document.querySelector("#score")
+
+const boardWidth = 22
+const boardHeight = 30
+
+
+// Make cell elements in board
+for (let i = 0; i < boardWidth; i++) {
+    for (let j = 0; j < boardHeight; j++) {
+        const cell = document.createElement('div')
+        cell.classList.add("cell")
+        // cell id only to know
+        cell.id = (i * boardHeight) + j
+        board.appendChild(cell)
+    }
+}
+
+// find cells in board
+const cellsEl = document.querySelectorAll(".cell")
+
+
+// draw board function
+const drawBoard = () => {
+
+    // reset board
+    cellsEl.forEach(cell => {
+        cell.classList = "cell"
+    });
+}
