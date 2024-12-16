@@ -17,12 +17,12 @@
         <li> <a href="./about.html">About</a></li>
         <li><a href="./making.html">Making Of</a></li>
     </nav>
-    <div id="container">
+    <div class="container">
         <div class="window" id="main">
             <div id="helper">
                 <img id="settings-button" src="./assets/images/settings.png"></img>
                 <div id="settings-menu">
-                    <div class="menu-item">Theme:
+                    <div class="menu-item"><span class="menu-heading">Theme:</span>
                         <div class="theme normal">
                             <div class="top-left"></div>
                             <div class="top-right"></div>
@@ -42,13 +42,13 @@
                             <div class="bottom-right"></div>
                         </div>
                     </div>
-                    <div class="menu-item">Sound:
+                    <div class="menu-item"><span class="menu-heading">Sound:</span>
                         <div id="sound" class="sound-on"></div>
                     </div>
-                    <div class="menu-item">Music:
+                    <div class="menu-item"><span class="menu-heading">Music:</span>
                         <div id="music" class="music-on"></div>
                     </div>
-                    
+
                 </div>
                 <img id="help-button" src="./assets/images/help.png"></img>
             </div>
@@ -60,12 +60,16 @@
             <h1 id="score">0</h1>
             <div class="board"></div>
             <div class="overlay" id="game-over">
-                <h1>Game Over</h1>
-                <h2>Final Score: 5</h2>
-                <h2>High Score: 10</h2>
-                <h6>New High Score</h6>
-                <button id="main-menu-button">Main Menu</button>
-                <button id="play-again-button">Play Again</button>
+                <div id="overlay-top">
+                <h1 id="gameOverText">Game Over</h1>
+                <h2 id="finalScoreText">Final Score: <span id="finalScore"></span></h2>
+                <h2 id="highScoreText">High Score: <span id="highScore"></span></h2>
+                <h6 id="newHighScoreIndicator">New High Score</h6>
+                </div>
+                <div id="overlay-buttons-cont">
+                    <button class="overlay-btn" id="main-menu-button">Main Menu</button>
+                    <button  class="overlay-btn" id="play-again-button">Play Again</button>
+                </div>
             </div>
         </div>
     </div>
