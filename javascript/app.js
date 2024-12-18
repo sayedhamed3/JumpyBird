@@ -14,6 +14,7 @@ const themesEl = document.querySelectorAll(".theme")
 const settingsMenuEl = document.querySelector("#settings-menu")
 const mainHighScore = document.getElementById("main-high-score")
 
+
 // Windows elements
 const mainWindowEl = document.getElementById("main")
 const gameWindowEl = document.getElementById("game")
@@ -42,30 +43,50 @@ const toggleSettingsMenu = () => {
     }
 }
 
-let soundEnabled = true
+let soundEnabled = localStorage.getItem("soundEnabled") === "true";
+
 const toggleSound = () => {
     if (soundEnabled) {
         soundEl.classList.replace("sound-on", "sound-off")
         soundEnabled = false
+        toggleSoundSE("off")
     }
     else {
         soundEl.classList.replace("sound-off", "sound-on")
         soundEnabled = true
+        toggleSoundSE("on")
     }
+
+    localStorage.setItem("soundEnabled", soundEnabled)
 }
 
-let musicEnabled = true
+const bgMusic = new Audio('./assets/audios/bg-music.mp3')
+bgMusic.currentTime = 0
+bgMusic.loop = true
+let musicEnabled = localStorage.getItem("musicEnabled") === "true";
+
+
 const toggleMusic = () => {
     if (musicEnabled) {
         musicEl.classList.replace("music-on", "music-off")
-        musicEnabled = false;
+        musicEnabled = false
+        bgMusic.pause()
+        bgMusic.currentTime = 0
     }
     else {
         musicEl.classList.replace("music-off", "music-on")
-        musicEnabled = true;
+        musicEnabled = true
+        bgMusic.play()
     }
 
+    localStorage.setItem("musicEnabled", musicEnabled)
+
 }
+
+
+
+
+
 
 const bodyEl = document.querySelector("body")
 const normalTheme = document.querySelector(".normal")
@@ -105,7 +126,23 @@ const loadThemePreference = () => {
         const normalTheme = document.querySelector(".normal")
         normalTheme.classList.add("selected")
     }
+
+    const musicEnabled = localStorage.getItem("musicEnabled")
+    if(musicEnabled === "true") {
+        bgMusic.play()
+    } else {
+        musicEl.classList.replace("music-on", "music-off")
+    }
+
+    const soundEnabled = localStorage.getItem("soundEnabled")
+    if(soundEnabled === "true") {
+        toggleSoundSE("on")
+    } else {
+        soundEl.classList.replace("sound-on", "sound-off")
+        toggleSoundSE("off")
+    }
 }
+
 
 const playAgain = () => {
     goToGame()
@@ -136,8 +173,34 @@ document.addEventListener("DOMContentLoaded", () => {
     init();
 });
 
+// Sounds
 
+const birdSE = new Audio("./assets/audios/bird-jump.wav")
+const buttonSE = new Audio("./assets/audios/button.wav")
+const collideSE = new Audio("./assets/audios/collide.wav")
+const scoreSE = new Audio("./assets/audios/score.wav")
 
+const toggleSoundSE = (type) => {
+    if (type == "on") {
+        birdSE.volume = 0.8
+        buttonSE.volume = 0.8
+        collideSE.volume = 0.8
+        scoreSE.volume = 0.8
+    } else {
+        birdSE.volume = 0
+        buttonSE.volume = 0
+        collideSE.volume = 0
+        scoreSE.volume = 0
+    }
+}
+
+const buttonsEl = document.querySelectorAll("button")
+
+buttonsEl.forEach((buttonEl) => {
+    buttonEl.addEventListener("click", () => {
+        buttonSE.play()
+    })
+})
 // Game Logic / Functionality
 
 const board = document.querySelector(".board")
@@ -334,8 +397,6 @@ const gameOver = async () => {
     }
     finalScoreEl.textContent = score
     highScoreEl.textContent = sessionStorage.getItem("highScore")
-    console.log("Game Over")
-    console.log(`highscore: ${highScore}`)
     clearInterval(gameInterval)
     clearInterval(playerInterval)
     clearInterval(renderInterval)
@@ -345,19 +406,16 @@ const gameOver = async () => {
 }
 
 const birdFall = () => {
-    console.log("bird fall")
     return new Promise((resolve) => {
         const interval = setInterval(() => {
-            console.log("moving")
             moveBird();
             drawBoard();
-    
-    
+
+
             if (bird.y >= boardHeight - 1) {
                 bird.y = boardHeight - 1
                 clearInterval(interval)
-                console.log("bird has fallen")
-    
+
                 resolve();
             }
         }, 40)
@@ -376,6 +434,7 @@ const moveBird = () => {
 const birdJump = () => {
     if (gameActive) {
         birdGravity = -2
+        birdSE.play()
     }
 
 }
@@ -397,6 +456,7 @@ const gameTick = () => {
     // if bird is same index as pipe,
     if (bird.x == pipeList[0].x) {
         score = score + 1
+        scoreSE.play()
     }
     shiftPipes()
     if (!isHit) {
@@ -408,6 +468,7 @@ const renderTick = () => {
     checkCollision()
     if (isHit) {
         takeKeyInput = false;
+        collideSE.play()
         gameOver()
 
     }
@@ -439,12 +500,11 @@ const restartGame = () => {
 
 document.addEventListener('keypress', (event) => {
 
-    if(!takeKeyInput) return
+    if (!takeKeyInput) return
 
     if (event.key == " ") {
         event.preventDefault()
         if (!gameActive && gameOverOverlayEl.style.display == "none") {
-            console.log("ActivateGame")
             startGame()
         }
         birdJump()

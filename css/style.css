@@ -2,8 +2,8 @@
     --bg-color: rgb(172, 162, 122);
     --overlay-color: rgb(172, 162, 122, 0.5);
     --text-color: black;
-    --button-bg: yellow;
-    --button-text: green;
+    --button-bg: rgb(172, 162, 122);
+    --button-text: white;
     --window-bg: white;
     --board-color: aqua;
     --bird-color: yellow;
@@ -11,25 +11,25 @@
 }
 
 .purple-theme {
-    --bg-color: lightgoldenrodyellow;
-    --overlay-color: rgb(250, 250, 250, 0.5);
+    --bg-color: rgb(219, 129, 255);
+    --overlay-color: rgba(151, 40, 255, 0.5);
     --text-color: white;
     --settings-text: black;
     --button-bg: #9b59b6;
     --button-text: white;
     --window-bg: #6a0dad;;
-    --board-color: red;
-    --bird-color: yellow;
-    --pipe-color: green;
+    --board-color: rgb(255, 164, 232);
+    --bird-color: #9b59b6;
+    --pipe-color: rgb(160, 19, 255);
 }
 
 .dark-theme {
     --bg-color: black;
     --overlay-color: rgb(0, 0, 0, 0.5);
     --text-color: white;
-    --button-bg: #333;
+    --button-bg: rgb(255, 123, 0);
     --button-text: white;
-    --window-bg: lightgoldenrodyellow;
+    --window-bg: rgb(145, 145, 145);
     --board-color: rgb(34, 34, 34);
     --bird-color: rgb(255, 123, 0);
     --pipe-color: rgb(32, 85, 43);
@@ -38,7 +38,10 @@
 
 button {
     background-color: var(--button-bg);
-    color: var(--button-text)
+    color: var(--button-text);
+    border-color: var(--bg-color);
+    border-width: 5px;
+    border-radius: 20px;
 }
 
 
@@ -73,15 +76,34 @@ nav>li>a {
     color: white;
 }
 
+p {
+    font-size: 2em;
+}
+
 #main {
     display: flex;
 }
 
-.container{
+#main-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans', sans-serif;
+    font-size: 5em;
+    margin: 5%
+}
+
+#main-message {
+    font-family: 'Trebuchet MS', 'Lucida Sans', sans-serif;
+    font-size: 2em;
+}
+
+.indexContainer{
     height:95vh;
     padding: 10px;
 }
 
+#container {
+    height:95vh;
+    padding: 10px;
+}
 
 .window {
     background-color: var(--window-bg);
@@ -112,15 +134,18 @@ nav>li>a {
     height: 100%;
     aspect-ratio: 11/15;
     background-color: var(--board-color);
-    border: 2px solid black;
+    border-radius: 5px;
+    border: 2px var(--text-color) solid
 }
 
 #play-button {
-    width: 30%;
+    width: 300px;
     height: 10%;
     align-self: center;
     margin-top: auto;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
+    font-size: 1.5em;
+    font-weight: bolder;
 }
 
 
@@ -215,11 +240,11 @@ button:hover {
 }
 
 .theme.normal .top-left {
-    background-color: antiquewhite;
+    background-color: rgb(172, 162, 122);
 }
 
 .theme.normal .top-right {
-    background-color: black;
+    background-color: aqua;
 }
 
 .theme.normal .bottom-left {
@@ -235,16 +260,32 @@ button:hover {
 }
 
 .theme.purple .top-right {
-    background-color: rgb(235, 62, 62);
+    background-color: rgb(255, 164, 232);
 }
 
 .theme.purple .bottom-left {
-    background-color: rgb(174, 0, 255);
+    background-color: #9b59b6;
 }
 
 .theme.purple .bottom-right {
-    background-color: rgb(0, 238, 255);
+    background-color: rgb(160, 19, 255);
 }
+
+.theme.dark .top-left {
+    background-color: black;
+}
+.theme.dark .bottom-right {
+    background-color: rgb(32, 85, 43);;
+}
+
+.theme.dark .top-right {
+    background-color: rgb(145, 145, 145);;
+}
+
+.theme.dark .bottom-left {
+    background-color: rgb(255, 123, 0);;
+}
+
 
 #sound {
     height: 100px;
@@ -358,8 +399,8 @@ button:active {
     z-index: 1000000;
     transform: rotateZ(340deg);
     position: absolute;
-    margin-left: 55%;
-    margin-top: -6%;
+    margin-left: 41vw;
+    margin-top: -3vh;
 }
 
 #overlay-buttons-cont {
@@ -389,7 +430,10 @@ button:active {
     top: 10%;
     left:50%;
     transform: translate(-50%,-50%);
-
+    font-size: 3.6em;
+    color:white;
+    background-color: var(--overlay-color);
+    padding:10px 30px;
 }
 
 
