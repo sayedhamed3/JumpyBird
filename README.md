@@ -4,7 +4,7 @@
 App Name: Jumpy Bird
 Description: It is a game about a bird trying to go through pipes. As the player, you should make sure to get throught the pipes to gain points. The speed of the game increases as the game goes on.
 
-Deployed game link:
+Deployed game link: https://sayedhamed3.github.io/JumpyBird/index.html
 Planning link: https://docs.google.com/document/d/1S1bzJ151ZZhLZOIT0FDf_qBvQbOgkIsL4NoR1dN48vg/edit?usp=sharing
 
 Attributions: 
