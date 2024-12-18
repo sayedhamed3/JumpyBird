@@ -72,9 +72,14 @@ nav>li:hover {
     transform: scale(1.2);
 }
 
+a{
+    color:var(--text-color)
+}
+
 nav>li>a {
     color: white;
 }
+
 
 p {
     font-size: 2em;
